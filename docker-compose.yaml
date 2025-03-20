@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./server
+    ports:
+      - "4000:4000"
+    networks:
+      - mern_network
+    environment:
+      MONGO_URI: mongodb://mongo:27017/mydatabase
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./client
+    ports:
+      - "5173:5173"
+    networks:
+      - mern_network
+    environment:
+      REACT_APP_API_URL: http://backend:4000
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - mern_network
+    volumes:
+      - ./mongo-data:/data/db  # Corrected volume mount
+
+networks:
+  mern_network:
+    driver: bridge
