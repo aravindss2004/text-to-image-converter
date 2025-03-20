@@ -1,4 +1,4 @@
-# **Imagify SEPM Project**  
+# **Imagify  Project**  
 A text-to-image conversion project with integrated payment functionality, built using the MERN stack and containerized using Docker.
 
 ## **📌 Features**
